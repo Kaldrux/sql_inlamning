@@ -24,7 +24,10 @@ def get_db_connection():
 
 @app.route('/')
 def index():
-    return render_template('login.html')
+    if 'username' in session:
+        return render_template('index.html', username=session['username'])
+    else:
+        return render_template('login.html')
 
 @app.route('/login', methods=['POST'])
 def login():
